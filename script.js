@@ -9,7 +9,8 @@ var scores = document.getElementById("scores");
 
 
 
-var shuffledQuestions, currentQuestion
+var shuffledQuestions
+var currentQuestion
 
 start.addEventListener("click", startQuiz);
 start.addEventListener("click", startTime);
@@ -59,7 +60,10 @@ function selectChoice(e){
     Array.from(choicesEl.children).forEach(button =>{
         status(button, button.dataset.correct)
     })
-    next.classList.remove("hide") 
+    if (shuffledQuestions.length > currentQuestion + 1){
+        next.classList.remove("hide") 
+    } 
+  
 } 
 
 function status(element, correct){
@@ -88,8 +92,13 @@ function startTime() {
       clearInterval(timerInterval);
     }
   }, 1000);
+  choicesEl.addEventListener("click", function(){
+      secondsLeft -= 15;
+      timeEl.innerText = secondsLeft;
+  })
 }
 startTime();
+
 
 var questions = [
     {question: "What is 3 + 3?",
