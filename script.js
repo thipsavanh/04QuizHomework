@@ -4,9 +4,8 @@ var next = document.getElementById("next-btn");
 var questionContainer = document.getElementById("question-container");
 var questionEl = document.getElementById("question")
 var choicesEl = document.getElementById("choices-buttons");
-var timeEl = document.getElementById("timerRemaining");
+var timeEl = document.getElementById("timeRemaining");
 var scores = document.getElementById("scores");
-
 
 
 var shuffledQuestions
@@ -63,7 +62,6 @@ function selectChoice(e){
     if (shuffledQuestions.length > currentQuestion + 1){
         next.classList.remove("hide") 
     } 
-  
 } 
 
 function status(element, correct){
@@ -88,14 +86,11 @@ function startTime() {
     secondsLeft--;
     timeEl.innerText = "Time: " + secondsLeft;
 
-    if(secondsLeft <= 0) {
+    if(secondsLeft <= 1) {
       clearInterval(timerInterval);
     }
   }, 1000);
-  choicesEl.addEventListener("click", function(){
-      secondsLeft -= 15;
-      timeEl.innerText = secondsLeft;
-  })
+  
 }
 startTime();
 
